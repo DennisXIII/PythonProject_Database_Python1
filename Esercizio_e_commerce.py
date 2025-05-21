@@ -1,7 +1,7 @@
 import mysql.connector
 
 def esegui_query_insert(query, valori):
-    conn = mysql.connector.connect(
+    conn = connect(
         host="localhost",
         user="root",
         password="",
@@ -19,7 +19,7 @@ def esegui_query_insert(query, valori):
     conn.close()
 
 def query_select(query, valori):
-    conn = mysql.connector.connect(
+    conn = connect(
         host="localhost",
         user="root",
         password="",
@@ -99,7 +99,7 @@ def registra_utente_admin():
 
 
 def visualizza_saldo(id_utente):
-    q = "select credito from utenti where id = %s"
+    q = "select credito from utenti where id_utente = %s"
     v = (id_utente,)
 
     ris = query_select(q, v)
@@ -107,7 +107,7 @@ def visualizza_saldo(id_utente):
     print(f"Il tuo credito è: {ris[0]['credito']}")
 
 def visualizza_prodotti_disponibili(id_prodotto):
-    q = "select nome from prodotti where id = %s"
+    q = "select nome from prodotti where id_prodotto = %s"
     v = (id_prodotto,)
 
     ris = query_select(q, v)
